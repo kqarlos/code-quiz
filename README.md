@@ -39,7 +39,7 @@ This application is compatible with the most commonly used web browsers.
 
 ## Deployed Link
 
-* [See Live Site](https://kqarlos.github.io/code-quiz/index.html)
+* [See Live Site](https://kqarlos.github.io/code-quiz)
 
 ## Authors
 
