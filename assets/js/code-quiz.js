@@ -1,7 +1,13 @@
-var welcomePageEl = document.querySelector("#welcomePage");
+var welcomeEl = document.querySelector("#welcome");
+var quizEl = document.querySelector("#quiz");
 var viewHScoresEl = document.querySelector("#viewHScores");
 var timerEl = document.querySelector("#timer");
 var startEl = document.querySelector("#start");
+var questionEl = document.querySelector("#question");
+var answersEl = document.querySelector("#answers");
+
+
+var currentQ = 0;
 
 var questions = [
     {
@@ -34,8 +40,9 @@ viewHScoresEl.addEventListener("click", function () {
 
 //starts quiz upon click
 startEl.addEventListener("click", function () {
-
-
+    hide(welcomeEl);
+    populateQA();
+    show(quizEl);
 });
 
 //hides element
@@ -47,6 +54,14 @@ function hide(element) {
 function show(element) {
     element.style.display = "block";
 
+}
+
+function populateQA() {
+    questionEl.textContent = questions[currentQ].title;
+    console.log(answersEl);
+    for (i = 0; i < answersEl.children.length; i++) {
+        answersEl.children[i].children[0].textContent = questions[currentQ].choices[i];
+    }
 }
 
 

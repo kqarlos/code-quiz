@@ -32,9 +32,11 @@
 
     <!-- jumbotron -->
 
-    <div class="container" id="welcomePage">
+    <div class="container">
         <div class="jumbotron jumbotron-fluid text-center">
-            <div class="container">
+
+            <!-- welcome  -->
+            <div class="container" id="welcome">
                 <h1 class="display-4 mb-4">Coding Quiz Challenge</h1>
                 <p class="lead mb-4">Try to answer the following code-related questions with the time limit. Keep in
                     mind
@@ -42,11 +44,22 @@
                 <button type="button" class="btn btn-primary btn-lg" id="start">Start Quiz</button>
 
             </div>
+
+            <!-- quiz -->
+            <div class="container" id="quiz">
+                <h1 class="display-4 mb-4" id="question"></h1>
+                <ol id="answers">
+                    <li><button type="button" class="btn btn-primary btn-lg" id="1"></button></li>
+                    <li><button type="button" class="btn btn-primary btn-lg" id="2"></button></li>
+                    <li><button type="button" class="btn btn-primary btn-lg" id="3"></button></li>
+                    <li><button type="button" class="btn btn-primary btn-lg" id="4"></button></li>
+                </ol>
+            </div>
+
         </div>
     </div>
 
     <!-- end jumbotron -->
-
 
 
     <!-- JavaScript -->
