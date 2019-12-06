@@ -8,9 +8,16 @@ var questionEl = document.querySelector("#question");
 var answersEl = document.querySelector("#answers");
 var initialsEl = document.querySelector("#initials");
 var submitInitialsEl = document.querySelector("#submitInitials");
-var highScoresEl = document.querySelector("highScores");
+var highScoresEl = document.querySelector("#highScores");
+var scoresEl = document.querySelector("#scores");
+var goBakcEl = document.querySelector("#goBack");
+var clearScoresEl = document.querySelector("#clearScores");
+var userScoreEl = document.querySelector("#score");
+
+
 var score = 0;
 var currentQ = 0;
+var highScores = [];
 
 var questions = [
     {
@@ -31,12 +38,13 @@ function startTimer() {
 }
 
 //Cleats current question and displays next question
-function nextQuestion() {
+function nextQuestion(targer) {
     currentQ++;
     if (currentQ < questions.length) {
         populateQA();
     } else {
-        currentQ = 0;
+        console.log("final score: " + score);
+        userScoreEl.textContent = score;
         hide(quizEl);
         show(inputScoreEl);
     }
@@ -44,8 +52,10 @@ function nextQuestion() {
 
 //displays high scores upon click
 viewHScoresEl.addEventListener("click", function () {
-
-
+    hide(welcomeEl);
+    hide(quizEl);
+    hide(inputScoreEl);
+    renderHighScores();
 });
 
 //starts quiz upon click
@@ -56,11 +66,28 @@ startEl.addEventListener("click", function () {
 });
 
 answersEl.addEventListener("click", function (e) {
-    console.log(e.target);
+    // console.log(e.target);
     if (e.target.matches("button")) {
+        checkAnswer(e.target);
         nextQuestion();
     }
 });
+
+function checkAnswer(answer) {
+    console.log("answer element: ");
+    console.log(answer);
+    var answerIndex = answer.id - 1;
+    console.log("answer index: " + answerIndex);
+
+    if (questions[currentQ].answer == questions[currentQ].choices[answerIndex]) {
+        score++;
+        console.log("correct, score: "+ score);
+    }
+    else {
+        console.log("incorrect, score:" + score);
+    }
+
+}
 
 //hides element
 function hide(element) {
@@ -81,8 +108,40 @@ function populateQA() {
     }
 }
 
-submitInitialsEl.addEventListener("click", function(){
-    localStorage.setItem(initialsEl.value, score);
+submitInitialsEl.addEventListener("click", function () {
+    var userScore = { username: initialsEl.value, userScore: score };
+    if (localStorage.getItem("scores")) {
+        highScores = JSON.parse(localStorage.getItem("scores"));
+    }
+    highScores.push(userScore)
+    localStorage.setItem("scores", JSON.stringify(highScores));
     hide(inputScoreEl);
-    show(welcomeEl);
+    renderHighScores();
 });
+
+function renderHighScores() {
+    show(highScoresEl);
+    highScores = JSON.parse(localStorage.getItem("scores"));
+    for (var i = 0; i < highScores.length; i++) {
+        var scoreItem = document.createElement("li");
+        scoreItem.textContent = highScores[i].username + ": " + highScores[i].userScore;
+        scoresEl.appendChild(scoreItem);
+    }
+}
+
+goBakcEl.addEventListener("click", function () {
+    hide(highScoresEl);
+    reset();
+});
+
+clearScoresEl.addEventListener("click", function () {
+    highScores = [];
+    localStorage.setItem("scores", JSON.stringify(highScores));
+    renderHighScores();
+});
+
+function reset() {
+    score = 0;
+    currentQ = 0;
+    show(welcomeEl);
+}
