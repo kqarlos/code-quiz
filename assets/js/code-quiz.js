@@ -1,5 +1,6 @@
 var welcomeEl = document.querySelector("#welcome");
 var quizEl = document.querySelector("#quiz");
+var inputScoreEl = document.querySelector("#inputScore");
 var viewHScoresEl = document.querySelector("#viewHScores");
 var timerEl = document.querySelector("#timer");
 var startEl = document.querySelector("#start");
@@ -34,7 +35,8 @@ function nextQuestion() {
         populateQA();
     } else {
         currentQ = 0;
-        inputHighscore();
+        hide(quizEl);
+        inputScore();
     }
 }
 
@@ -78,8 +80,8 @@ function populateQA() {
 }
 
 //
-function inputHighScore(){
-
+function inputScore() {
+    show(inputScoreEl);
 }
 
 
