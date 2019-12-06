@@ -6,8 +6,10 @@ var timerEl = document.querySelector("#timer");
 var startEl = document.querySelector("#start");
 var questionEl = document.querySelector("#question");
 var answersEl = document.querySelector("#answers");
-
-
+var initialsEl = document.querySelector("#initials");
+var submitInitialsEl = document.querySelector("#submitInitials");
+var highScoresEl = document.querySelector("highScores");
+var score = 0;
 var currentQ = 0;
 
 var questions = [
@@ -36,7 +38,7 @@ function nextQuestion() {
     } else {
         currentQ = 0;
         hide(quizEl);
-        inputScore();
+        show(inputScoreEl);
     }
 }
 
@@ -79,9 +81,8 @@ function populateQA() {
     }
 }
 
-//
-function inputScore() {
-    show(inputScoreEl);
-}
-
-
+submitInitialsEl.addEventListener("click", function(){
+    localStorage.setItem(initialsEl.value, score);
+    hide(inputScoreEl);
+    show(welcomeEl);
+});
