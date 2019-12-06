@@ -29,7 +29,13 @@ function startTimer() {
 
 //Cleats current question and displays next question
 function nextQuestion() {
-
+    currentQ++;
+    if (currentQ < questions.length) {
+        populateQA();
+    } else {
+        currentQ = 0;
+        inputHighscore();
+    }
 }
 
 //displays high scores upon click
@@ -43,6 +49,13 @@ startEl.addEventListener("click", function () {
     hide(welcomeEl);
     populateQA();
     show(quizEl);
+});
+
+answersEl.addEventListener("click", function (e) {
+    console.log(e.target);
+    if (e.target.matches("button")) {
+        nextQuestion();
+    }
 });
 
 //hides element
@@ -62,6 +75,11 @@ function populateQA() {
     for (i = 0; i < answersEl.children.length; i++) {
         answersEl.children[i].children[0].textContent = questions[currentQ].choices[i];
     }
+}
+
+//
+function inputHighScore(){
+
 }
 
 
