@@ -48,7 +48,7 @@ function startTimer() {
     interval = setInterval(function () {
         secondsElapsed++;
         timerEl.textContent = timeGiven - secondsElapsed;
-        if(secondsElapsed === timeGiven){
+        if (secondsElapsed === timeGiven) {
             stopTimer();
             currentQ = questions.length;
             nextQuestion();
@@ -97,7 +97,7 @@ function checkAnswer(answer) {
 }
 
 //displays a message for 2 seconds
-function displayMessage(m){
+function displayMessage(m) {
     var timeStart = 0;
     var timeStop = 2;
     var messageHr = document.createElement("hr");
@@ -107,7 +107,7 @@ function displayMessage(m){
     document.querySelector(".jumbotron").appendChild(messageEl);
     var messageInterval = setInterval(function () {
         timeStart++;
-        if(timeStart >= timeStop){
+        if (timeStart >= timeStop) {
             messageHr.remove();
             messageEl.remove();
             clearInterval(messageInterval)
@@ -142,7 +142,7 @@ function renderQuestion() {
     questionEl.textContent = questions[currentQ].title;
     // console.log(answersEl);
     for (i = 0; i < answersEl.children.length; i++) {
-        answersEl.children[i].children[0].textContent = questions[currentQ].choices[i];
+        answersEl.children[i].children[0].textContent = (i + 1) + ": " + questions[currentQ].choices[i];
     }
 }
 
@@ -155,7 +155,11 @@ function renderHighScores() {
     highScores = JSON.parse(localStorage.getItem("scores"));
     for (var i = 0; i < highScores.length; i++) {
         var scoreItem = document.createElement("li");
-        scoreItem.textContent = highScores[i].username + ": " + highScores[i].userScore;
+        if (i === 0)
+            scoreItem.textContent = highScores[i].username + " - " + highScores[i].userScore;
+        else
+            scoreItem.textContent = i + ". " + highScores[i].username + " - " + highScores[i].userScore;
+
         scoresEl.appendChild(scoreItem);
     }
 }
@@ -194,6 +198,8 @@ submitInitialsBtnEl.addEventListener("click", function () {
     var userScore = { username: initialsEl.value, userScore: score };
     if (localStorage.getItem("scores")) {
         highScores = JSON.parse(localStorage.getItem("scores"));
+    } else {
+        highScores.push({ username: "USER", userScore: "SCORE" });
     }
     highScores.push(userScore)
     localStorage.setItem("scores", JSON.stringify(highScores));
@@ -209,7 +215,7 @@ goBackBtnEl.addEventListener("click", function () {
 
 //Clears saved scores from local storage
 clearScoresBtnEl.addEventListener("click", function () {
-    highScores = [];
+    highScores = [{ username: "USER", userScore: "SCORE" }];
     localStorage.setItem("scores", JSON.stringify(highScores));
     renderHighScores();
 });

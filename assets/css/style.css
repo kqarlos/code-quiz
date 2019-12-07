@@ -1,3 +1,11 @@
 #quiz, #inputScore, #highScores {
     display: none;
 }
+
+.jumbotron {
+    background-color: white;
+}
+
+#quiz {
+    width: 80%;
+}
