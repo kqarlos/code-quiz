@@ -104,6 +104,9 @@ function renderQuestion() {
 
 //Renders high scores stored in local storage
 function renderHighScores() {
+    while (scoresEl.firstChild) {
+        scoresEl.removeChild(scoresEl.firstChild);
+    }
     show(highScoresEl);
     highScores = JSON.parse(localStorage.getItem("scores"));
     for (var i = 0; i < highScores.length; i++) {
