@@ -69,10 +69,11 @@ function nextQuestion() {
     } else {
         // console.log("final score: " + score);
         stopTimer();
+        score += (timeGiven - secondsElapsed);
         userScoreEl.textContent = score;
         hide(quizEl);
         show(inputScoreEl);
-        reset();
+        timerEl.textContent = 0;
     }
 }
 
@@ -131,7 +132,6 @@ function reset() {
     score = 0;
     currentQ = 0;
     secondsElapsed = 0;
-    timerEl.textContent = 0;
 }
 
 //=================== Rendering ================================
@@ -206,6 +206,7 @@ submitInitialsBtnEl.addEventListener("click", function () {
         localStorage.setItem("scores", JSON.stringify(highScores));
         hide(inputScoreEl);
         renderHighScores();
+        reset();
     }
 });
 
