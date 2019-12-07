@@ -78,7 +78,7 @@ function checkAnswer(answer) {
         displayMessage("Correct!");
     }
     else {
-        secondsElapsed += 15;
+        secondsElapsed += 10;
         displayMessage("Wrong...");
         // console.log("incorrect, score:" + score);
     }
@@ -144,7 +144,7 @@ function renderHighScores() {
         var scoreItem = document.createElement("div");
         scoreItem.className += "row mb-3 p-2";
         console.log(scoreItem)
-        scoreItem.setAttribute("style", "background-color:rgb(226, 87, 254);");
+        scoreItem.setAttribute("style", "background-color:PaleTurquoise;");
         scoreItem.textContent = (i + 1) + ". " + highScores[i].username + " - " + highScores[i].userScore;
         scoresEl.appendChild(scoreItem);
     }
