@@ -56,15 +56,14 @@ function startTimer() {
     }, 1000);
 }
 
+//stops timer
 function stopTimer() {
     clearInterval(interval);
-    secondsElapsed = 0;
-    timerEl.textContent = 0;
 }
 
 //Clears current question and calls for display of next question
 //Calls for input score display if last question
-function nextQuestion(targer) {
+function nextQuestion() {
     currentQ++;
     if (currentQ < questions.length) {
         renderQuestion();
@@ -74,6 +73,7 @@ function nextQuestion(targer) {
         userScoreEl.textContent = score;
         hide(quizEl);
         show(inputScoreEl);
+        reset();
     }
 }
 
@@ -87,10 +87,33 @@ function checkAnswer(answer) {
     if (questions[currentQ].answer == questions[currentQ].choices[answerIndex]) {
         score++;
         // console.log("correct, score: " + score);
+        displayMessage("Correct!");
     }
     else {
+        secondsElapsed += 15;
+        displayMessage("Wrong...");
         // console.log("incorrect, score:" + score);
     }
+}
+
+//displays a message for 2 seconds
+function displayMessage(m){
+    var timeStart = 0;
+    var timeStop = 2;
+    var messageHr = document.createElement("hr");
+    var messageEl = document.createElement("div");
+    messageEl.textContent = m;
+    document.querySelector(".jumbotron").appendChild(messageHr);
+    document.querySelector(".jumbotron").appendChild(messageEl);
+    var messageInterval = setInterval(function () {
+        timeStart++;
+        if(timeStart >= timeStop){
+            messageHr.remove();
+            messageEl.remove();
+            clearInterval(messageInterval)
+        }
+    }, 1000);
+
 }
 
 //hides element
@@ -108,7 +131,8 @@ function show(element) {
 function reset() {
     score = 0;
     currentQ = 0;
-    show(welcomeEl);
+    secondsElapsed = 0;
+    timerEl.textContent = 0;
 }
 
 //=================== Rendering ================================
@@ -180,7 +204,7 @@ submitInitialsBtnEl.addEventListener("click", function () {
 //Goes back to Welcome page from High scores 
 goBackBtnEl.addEventListener("click", function () {
     hide(highScoresEl);
-    reset();
+    show(welcomeEl);
 });
 
 //Clears saved scores from local storage
