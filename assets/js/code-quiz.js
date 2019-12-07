@@ -49,7 +49,6 @@ function startTimer() {
         secondsElapsed++;
         timerEl.textContent = timeGiven - secondsElapsed;
         if (secondsElapsed === timeGiven) {
-            stopTimer();
             currentQ = questions.length;
             nextQuestion();
         }
