@@ -25,6 +25,10 @@ var timerEl = document.querySelector("#timer");
 var score = 0;
 var currentQ = 0;
 var highScores = [];
+var interval;
+var timeGiven = 75;
+var secondsElapsed = 0;
+
 var questions = [
     {
         title: "Commonly used data types DO NOT include:",
@@ -40,7 +44,22 @@ var questions = [
 
 //starts and updates timer
 function startTimer() {
+    timerEl.textContent = timeGiven;
+    interval = setInterval(function () {
+        secondsElapsed++;
+        timerEl.textContent = timeGiven - secondsElapsed;
+        if(secondsElapsed === timeGiven){
+            stopTimer();
+            currentQ = questions.length;
+            nextQuestion();
+        }
+    }, 1000);
+}
 
+function stopTimer() {
+    clearInterval(interval);
+    secondsElapsed = 0;
+    timerEl.textContent = 0;
 }
 
 //Clears current question and calls for display of next question
@@ -51,6 +70,7 @@ function nextQuestion(targer) {
         renderQuestion();
     } else {
         // console.log("final score: " + score);
+        stopTimer();
         userScoreEl.textContent = score;
         hide(quizEl);
         show(inputScoreEl);
@@ -59,17 +79,17 @@ function nextQuestion(targer) {
 
 //checks answer based on current question and updates the user score
 function checkAnswer(answer) {
-    console.log("answer element: ");
-    console.log(answer);
+    // console.log("answer element: ");
+    // console.log(answer);
     var answerIndex = answer.id - 1;
-    console.log("answer index: " + answerIndex);
+    // console.log("answer index: " + answerIndex);
 
     if (questions[currentQ].answer == questions[currentQ].choices[answerIndex]) {
         score++;
-        console.log("correct, score: " + score);
+        // console.log("correct, score: " + score);
     }
     else {
-        console.log("incorrect, score:" + score);
+        // console.log("incorrect, score:" + score);
     }
 }
 
@@ -130,6 +150,7 @@ viewHScoresBtnEl.addEventListener("click", function () {
 //starts quiz from  Welcome page
 startQuizBtnEl.addEventListener("click", function () {
     hide(welcomeEl);
+    startTimer();
     renderQuestion();
     show(quizEl);
 });
