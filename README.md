@@ -29,15 +29,15 @@ This application is compatible with the most commonly used web browsers.
 
 ## Code Snippets
 
-1. ### Submit Score: This event listener is tied to the _submitInitials_ button once that comes up once the quiz is over. It shows most of the manipulation that happens in the local storage. First it creates a new object with the user's initials and their score. Then it retrieves the array of user objects from the local storage if there is one. Then it pushes the created object to the array and saves it to the local storage. All objects saved to the local storage consist of a _username_, a _userScore_, and their respective values.
+1. ### Submit Score: This event listener is tied to the _submitInitials_ button once it's clicked. It shows most of the manipulation that happens in the local storage. First it creates a new object with the user's initials and their score. Then it retrieves the array of user objects from the local storage if there is one. Then it pushes the created object to the array and saves it to the local storage. All objects saved to the local storage consist of a _username_, a _userScore_, and their respective values.
+
 ```javascript
 
 submitInitialsBtnEl.addEventListener("click", function () {
     var userScore = { username: initialsEl.value, userScore: score };
+    initialsEl.value = '';
     if (localStorage.getItem("scores")) {
         highScores = JSON.parse(localStorage.getItem("scores"));
-    } else {
-        highScores.push({ username: "USER", userScore: "SCORE" });
     }
     highScores.push(userScore)
     localStorage.setItem("scores", JSON.stringify(highScores));

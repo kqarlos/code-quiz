@@ -154,7 +154,7 @@ function renderHighScores() {
     highScores = JSON.parse(localStorage.getItem("scores"));
     for (var i = 0; i < highScores.length; i++) {
         var scoreItem = document.createElement("div");
-        scoreItem.className += "row mb-3";
+        scoreItem.className += "row mb-3 p-2";
         console.log(scoreItem)
         scoreItem.setAttribute("style", "background-color:rgb(226, 87, 254);");
         scoreItem.textContent = (i + 1) + ". " + highScores[i].username + " - " + highScores[i].userScore;
@@ -195,15 +195,18 @@ answersEl.addEventListener("click", function (e) {
 //Creates a user score object to push to the local storage scores array calls to display high scores
 //calls to render high scores
 submitInitialsBtnEl.addEventListener("click", function () {
-    var userScore = { username: initialsEl.value, userScore: score };
-    initialsEl.value = '';
-    if (localStorage.getItem("scores")) {
-        highScores = JSON.parse(localStorage.getItem("scores"));
+    var initValue = initialsEl.value.trim();
+    if (initValue) {
+        var userScore = { username: initValue, userScore: score };
+        initialsEl.value = '';
+        if (localStorage.getItem("scores")) {
+            highScores = JSON.parse(localStorage.getItem("scores"));
+        }
+        highScores.push(userScore)
+        localStorage.setItem("scores", JSON.stringify(highScores));
+        hide(inputScoreEl);
+        renderHighScores();
     }
-    highScores.push(userScore)
-    localStorage.setItem("scores", JSON.stringify(highScores));
-    hide(inputScoreEl);
-    renderHighScores();
 });
 
 //Goes back to Welcome page from High scores 
