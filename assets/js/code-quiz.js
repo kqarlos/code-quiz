@@ -1,24 +1,30 @@
+// Welcome Page Elements =====================================
 var welcomeEl = document.querySelector("#welcome");
+var startQuizBtnEl = document.querySelector("#startQuiz");
+
+//Quiz Page Elements =========================================
 var quizEl = document.querySelector("#quiz");
-var inputScoreEl = document.querySelector("#inputScore");
-var viewHScoresEl = document.querySelector("#viewHScores");
-var timerEl = document.querySelector("#timer");
-var startEl = document.querySelector("#start");
 var questionEl = document.querySelector("#question");
 var answersEl = document.querySelector("#answers");
+
+//Input Score Page Elements ==================================
+var inputScoreEl = document.querySelector("#inputScore");
 var initialsEl = document.querySelector("#initials");
-var submitInitialsEl = document.querySelector("#submitInitials");
-var highScoresEl = document.querySelector("#highScores");
-var scoresEl = document.querySelector("#scores");
-var goBakcEl = document.querySelector("#goBack");
-var clearScoresEl = document.querySelector("#clearScores");
+var submitInitialsBtnEl = document.querySelector("#submitInitials");
 var userScoreEl = document.querySelector("#score");
 
+//View High Scores Page Elements =============================
+var highScoresEl = document.querySelector("#highScores");
+var scoresEl = document.querySelector("#scores");
+var goBackBtnEl = document.querySelector("#goBack");
+var clearScoresBtnEl = document.querySelector("#clearScores");
 
+//Universal vars =============================================
+var viewHScoresBtnEl = document.querySelector("#viewHScores");
+var timerEl = document.querySelector("#timer");
 var score = 0;
 var currentQ = 0;
 var highScores = [];
-
 var questions = [
     {
         title: "Commonly used data types DO NOT include:",
@@ -37,42 +43,21 @@ function startTimer() {
 
 }
 
-//Cleats current question and displays next question
+//Clears current question and calls for display of next question
+//Calls for input score display if last question
 function nextQuestion(targer) {
     currentQ++;
     if (currentQ < questions.length) {
-        populateQA();
+        renderQuestion();
     } else {
-        console.log("final score: " + score);
+        // console.log("final score: " + score);
         userScoreEl.textContent = score;
         hide(quizEl);
         show(inputScoreEl);
     }
 }
 
-//displays high scores upon click
-viewHScoresEl.addEventListener("click", function () {
-    hide(welcomeEl);
-    hide(quizEl);
-    hide(inputScoreEl);
-    renderHighScores();
-});
-
-//starts quiz upon click
-startEl.addEventListener("click", function () {
-    hide(welcomeEl);
-    populateQA();
-    show(quizEl);
-});
-
-answersEl.addEventListener("click", function (e) {
-    // console.log(e.target);
-    if (e.target.matches("button")) {
-        checkAnswer(e.target);
-        nextQuestion();
-    }
-});
-
+//checks answer based on current question and updates the user score
 function checkAnswer(answer) {
     console.log("answer element: ");
     console.log(answer);
@@ -81,12 +66,11 @@ function checkAnswer(answer) {
 
     if (questions[currentQ].answer == questions[currentQ].choices[answerIndex]) {
         score++;
-        console.log("correct, score: "+ score);
+        console.log("correct, score: " + score);
     }
     else {
         console.log("incorrect, score:" + score);
     }
-
 }
 
 //hides element
@@ -100,25 +84,25 @@ function show(element) {
 
 }
 
-function populateQA() {
+//reset local variables
+function reset() {
+    score = 0;
+    currentQ = 0;
+    show(welcomeEl);
+}
+
+//=================== Rendering ================================
+
+//Renders current question
+function renderQuestion() {
     questionEl.textContent = questions[currentQ].title;
-    console.log(answersEl);
+    // console.log(answersEl);
     for (i = 0; i < answersEl.children.length; i++) {
         answersEl.children[i].children[0].textContent = questions[currentQ].choices[i];
     }
 }
 
-submitInitialsEl.addEventListener("click", function () {
-    var userScore = { username: initialsEl.value, userScore: score };
-    if (localStorage.getItem("scores")) {
-        highScores = JSON.parse(localStorage.getItem("scores"));
-    }
-    highScores.push(userScore)
-    localStorage.setItem("scores", JSON.stringify(highScores));
-    hide(inputScoreEl);
-    renderHighScores();
-});
-
+//Renders high scores stored in local storage
 function renderHighScores() {
     show(highScoresEl);
     highScores = JSON.parse(localStorage.getItem("scores"));
@@ -129,19 +113,60 @@ function renderHighScores() {
     }
 }
 
-goBakcEl.addEventListener("click", function () {
+
+//=========================EVENTS================================
+
+//displays high scores
+viewHScoresBtnEl.addEventListener("click", function () {
+    hide(welcomeEl);
+    hide(quizEl);
+    hide(inputScoreEl);
+    renderHighScores();
+});
+
+//starts quiz from  Welcome page
+startQuizBtnEl.addEventListener("click", function () {
+    hide(welcomeEl);
+    renderQuestion();
+    show(quizEl);
+});
+
+//Calls to check answer selected and calls to next question if button is clicked
+answersEl.addEventListener("click", function (e) {
+    // console.log(e.target);
+    if (e.target.matches("button")) {
+        checkAnswer(e.target);
+        nextQuestion();
+    }
+});
+
+//Creates a user score object to push to the local storage scores array calls to display high scores
+//calls to render high scores
+submitInitialsBtnEl.addEventListener("click", function () {
+    var userScore = { username: initialsEl.value, userScore: score };
+    if (localStorage.getItem("scores")) {
+        highScores = JSON.parse(localStorage.getItem("scores"));
+    }
+    highScores.push(userScore)
+    localStorage.setItem("scores", JSON.stringify(highScores));
+    hide(inputScoreEl);
+    renderHighScores();
+});
+
+//Goes back to Welcome page from High scores 
+goBackBtnEl.addEventListener("click", function () {
     hide(highScoresEl);
     reset();
 });
 
-clearScoresEl.addEventListener("click", function () {
+//Clears saved scores from local storage
+clearScoresBtnEl.addEventListener("click", function () {
     highScores = [];
     localStorage.setItem("scores", JSON.stringify(highScores));
     renderHighScores();
 });
 
-function reset() {
-    score = 0;
-    currentQ = 0;
-    show(welcomeEl);
-}
+
+
+
+
