@@ -29,19 +29,6 @@ var interval;
 var timeGiven = 75;
 var secondsElapsed = 0;
 
-var questions = [
-    {
-        title: "Commonly used data types DO NOT include:",
-        choices: ["strings", "booleans", "alerts", "numbers"],
-        answer: "alerts"
-    },
-    {
-        title: "The condition in an if / else statement is enclosed within ____.",
-        choices: ["quotes", "curly brackets", "parentheses", "square brackets"],
-        answer: "parentheses"
-    },
-];
-
 //starts and updates timer
 function startTimer() {
     timerEl.textContent = timeGiven;
@@ -85,7 +72,7 @@ function checkAnswer(answer) {
     // console.log("answer index: " + answerIndex);
 
     if (questions[currentQ].answer == questions[currentQ].choices[answerIndex]) {
-        score++;
+        score += 5;
         // console.log("correct, score: " + score);
         displayMessage("Correct!");
     }
