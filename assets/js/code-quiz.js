@@ -153,12 +153,11 @@ function renderHighScores() {
     show(highScoresEl);
     highScores = JSON.parse(localStorage.getItem("scores"));
     for (var i = 0; i < highScores.length; i++) {
-        var scoreItem = document.createElement("li");
-        if (i === 0)
-            scoreItem.textContent = highScores[i].username + " - " + highScores[i].userScore;
-        else
-            scoreItem.textContent = i + ". " + highScores[i].username + " - " + highScores[i].userScore;
-
+        var scoreItem = document.createElement("div");
+        scoreItem.className += "row mb-3";
+        console.log(scoreItem)
+        scoreItem.setAttribute("style", "background-color:rgb(226, 87, 254);");
+        scoreItem.textContent = (i + 1) + ". " + highScores[i].username + " - " + highScores[i].userScore;
         scoresEl.appendChild(scoreItem);
     }
 }
@@ -197,10 +196,9 @@ answersEl.addEventListener("click", function (e) {
 //calls to render high scores
 submitInitialsBtnEl.addEventListener("click", function () {
     var userScore = { username: initialsEl.value, userScore: score };
+    initialsEl.value = '';
     if (localStorage.getItem("scores")) {
         highScores = JSON.parse(localStorage.getItem("scores"));
-    } else {
-        highScores.push({ username: "USER", userScore: "SCORE" });
     }
     highScores.push(userScore)
     localStorage.setItem("scores", JSON.stringify(highScores));
@@ -216,7 +214,7 @@ goBackBtnEl.addEventListener("click", function () {
 
 //Clears saved scores from local storage
 clearScoresBtnEl.addEventListener("click", function () {
-    highScores = [{ username: "USER", userScore: "SCORE" }];
+    highScores = [];
     localStorage.setItem("scores", JSON.stringify(highScores));
     renderHighScores();
 });

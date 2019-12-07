@@ -1,11 +1,13 @@
 #quiz, #inputScore, #highScores {
     display: none;
+    width: 70%;
 }
 
 .jumbotron {
     background-color: white;
 }
 
-#quiz {
-    width: 80%;
+.btn {
+    background-color: purple;
+    border: black;
 }

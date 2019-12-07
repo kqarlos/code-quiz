@@ -49,16 +49,16 @@
             <div class="container" id="quiz">
                 <h1 class="h1 mb-4" id="question"></h1>
                 <div class="container" id="answers">
-                    <div>
+                    <div class="row">
                         <button type="button" class="btn btn-primary btn-lg mb-3" id="1"></button>
                     </div>
-                    <div>
+                    <div class="row">
                         <button type="button" class="btn btn-primary btn-lg mb-3" id="2"></button>
                     </div>
-                    <div>
+                    <div class="row">
                         <button type="button" class="btn btn-primary btn-lg mb-3" id="3"></button>
                     </div>
-                    <div>
+                    <div class="row">
                         <button type="button" class="btn btn-primary btn-lg mb-3" id="4"></button>
                     </div>
                 </div>
@@ -66,7 +66,7 @@
 
             <!-- input high scores -->
             <div class="container" id="inputScore">
-                <h1 class="h1 mb-4">Well done!</h1>
+                <h1 class="h1 mb-4">All done!</h1>
                 <p class="lead mb-4">Your final score: <span id="score"></span></p>
                 <p class="lead mb-4">Enter initials: <input type="text " id="initials"></p>
                 <button type="button" class="btn btn-primary btn-lg" id="submitInitials">Submit</button>
@@ -75,8 +75,8 @@
             <!-- view high scores -->
             <div class="container" id="highScores">
                 <h1 class="h1 mb-4 font-weigth-bold">Highscores</h1>
-                <ol class="h4 mb-4" id="scores">
-                </ol>
+                <div class="container h4 mb-4" id="scores">
+                </div>
                 <button type="button" class="btn btn-primary btn-lg" id="goBack">Go Back</button>
                 <button type="button" class="btn btn-primary btn-lg" id="clearScores">Clear Scores</button>
             </div>
