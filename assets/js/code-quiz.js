@@ -35,7 +35,7 @@ function startTimer() {
     interval = setInterval(function () {
         secondsElapsed++;
         timerEl.textContent = timeGiven - secondsElapsed;
-        if (secondsElapsed === timeGiven) {
+        if (secondsElapsed >= timeGiven) {
             currentQ = questions.length;
             nextQuestion();
         }
@@ -56,7 +56,8 @@ function nextQuestion() {
     } else {
         // console.log("final score: " + score);
         stopTimer();
-        score += (timeGiven - secondsElapsed);
+        if ((timeGiven - secondsElapsed) > 0)
+            score += (timeGiven - secondsElapsed);
         userScoreEl.textContent = score;
         hide(quizEl);
         show(inputScoreEl);
