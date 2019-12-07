@@ -172,6 +172,8 @@ viewHScoresBtnEl.addEventListener("click", function () {
     hide(quizEl);
     hide(inputScoreEl);
     renderHighScores();
+    stopTimer();
+    reset();
 });
 
 //starts quiz from  Welcome page
