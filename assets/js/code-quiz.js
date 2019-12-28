@@ -120,6 +120,7 @@ function reset() {
     score = 0;
     currentQ = 0;
     secondsElapsed = 0;
+    timerEl.textContent = 0;
 }
 
 //=================== Rendering ================================
