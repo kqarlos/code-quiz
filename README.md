@@ -1,12 +1,25 @@
 # Code Quiz
 
+## Description
+
 This application will test your knowledge of javascript, css and html! Answer the questions under the time alloted. Each correct question will give you 5 points. Every incorrect question will substract 10 seconds from the timer. At the end, any extra time will be added to the final score. At the end you can save your final score and add to the list of high scores.
 
-## Getting Started
+## Table of Contents
+
+* [Installation](#installation)
+* [Usage](#usage)
+* [Credits](#credits)
+* [License](#license)
+
+## Installation
 
 This application is compatible with the most commonly used web browsers.
 
-## Site Picture
+* [See Live Site](https://kqarlos.github.io/code-quiz)
+
+## Usage
+
+### Site Picture
 
 1. Welcome 
 
@@ -27,7 +40,7 @@ This application is compatible with the most commonly used web browsers.
 
 
 
-## Code Snippets
+### Code Snippets
 
 1. Submit Score: This event listener is tied to the _submitInitials_ button. Once clicked, it shows most of the manipulation that happens in the local storage. First it trims the value of the input and checks if it's empty. Then, it creates a new object with the user's initials and their score. Then, it retrieves the array of user objects from the local storage if there is one. Then, it pushes the created object to the array and saves it to the local storage. All objects saved to the local storage consist of a _username_, a _userScore_, and their respective values.
 
@@ -72,31 +85,19 @@ function stopTimer() {
 }
     
 ```
+## Credits
 
-## Built With
+### Authors
+
+- Carlos Toledo: [portfolio](https://professional-portfolio2020.herokuapp.com/)
+- Github: [kqarlos](https://www.github.com/kqarlos)
+- LinkedIn: [carlos-toledo415](https://www.linkedin.com/in/carlos-toledo415/)
+
+
+### Built With
 
 * [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
 * [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
 * [Bootstrap](https://getbootstrap.com/)
 * [Javascript](https://www.javascript.com/)
-
-## Deployed Link
-
-* [See Live Site](https://kqarlos.github.io/code-quiz)
-
-## Authors
-
- * **Carlos Toledo** 
-
- ## Links
-
-- [Link to Code Quiz Site](https://github.com/kqarlos/code-quiz)
-- [Link to Github](https://www.github.com/kqarlos)
-- [Link to LinkedIn](https://www.linkedin.com/in/carlos-toledo415/)
-
-
-## Acknowledgments
-
-* [W3 Schools](https://www.w3schools.com/)
-* [Bootstrap components](https://getbootstrap.com/docs/4.4/components/navbar/)
 * [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model)
