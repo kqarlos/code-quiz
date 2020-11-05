@@ -9,9 +9,8 @@ This application will test your knowledge of javascript, css and html! Answer th
 * [Installation](#installation)
 * [Usage](#usage)
     * [Screenshots](#screenshots)
-    * [Snippets](#code)
+    * [Snippets](#snippets)
 * [Credits](#credits)
-* [License](#license)
 
 ## Installation
 
@@ -42,7 +41,7 @@ This application is compatible with the most commonly used web browsers.
 
 
 
-### Code Snippets
+### Snippets
 
 1. Submit Score: This event listener is tied to the _submitInitials_ button. Once clicked, it shows most of the manipulation that happens in the local storage. First it trims the value of the input and checks if it's empty. Then, it creates a new object with the user's initials and their score. Then, it retrieves the array of user objects from the local storage if there is one. Then, it pushes the created object to the array and saves it to the local storage. All objects saved to the local storage consist of a _username_, a _userScore_, and their respective values.
 
