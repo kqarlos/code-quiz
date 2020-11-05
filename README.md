@@ -11,6 +11,7 @@ This application will test your knowledge of javascript, css and html! Answer th
     * [Screenshots](#screenshots)
     * [Snippets](#snippets)
 * [Credits](#credits)
+* [License](#license)
 
 ## Installation
 
@@ -102,3 +103,7 @@ function stopTimer() {
 * [Bootstrap](https://getbootstrap.com/)
 * [Javascript](https://www.javascript.com/)
 * [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model)
+
+## Licence
+
+![GitHub](https://img.shields.io/github/license/kqarlos/code-quiz)
