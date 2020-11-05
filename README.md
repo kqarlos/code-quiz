@@ -104,6 +104,6 @@ function stopTimer() {
 * [Javascript](https://www.javascript.com/)
 * [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model)
 
-## Licence
+## License
 
 ![GitHub](https://img.shields.io/github/license/kqarlos/code-quiz)
