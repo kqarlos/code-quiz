@@ -8,6 +8,8 @@ This application will test your knowledge of javascript, css and html! Answer th
 
 * [Installation](#installation)
 * [Usage](#usage)
+    * [Screenshots](#screenshots)
+    * [Snippets](#code)
 * [Credits](#credits)
 * [License](#license)
 
@@ -19,7 +21,7 @@ This application is compatible with the most commonly used web browsers.
 
 ## Usage
 
-### Site Picture
+### Screenshots
 
 1. Welcome 
 
