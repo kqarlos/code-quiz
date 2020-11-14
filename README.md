@@ -1,5 +1,14 @@
 # Code Quiz
 
+![Languages](https://img.shields.io/github/languages/count/kqarlos/code-quiz)
+![Top Language](https://img.shields.io/github/languages/top/kqarlos/code-quiz)
+![Code Size](https://img.shields.io/github/languages/code-size/kqarlos/code-quiz)
+![Repo Size](https://img.shields.io/github/repo-size/kqarlos/code-quiz)
+![Total Lines](https://img.shields.io/tokei/lines/github/kqarlos/code-quiz)
+![Last Commit](https://img.shields.io/github/last-commit/kqarlos/code-quiz)
+[![HitCount](http://hits.dwyl.com/kqarlos/code-quiz.svg)](http://hits.dwyl.com/kqarlos/code-quiz)
+![Followers](https://img.shields.io/github/followers/kqarlos?style=social)
+
 ## Description
 
 This application will test your knowledge of javascript, css and html! Answer the questions under the time alloted. Each correct question will give you 5 points. Every incorrect question will substract 10 seconds from the timer. At the end, any extra time will be added to the final score. At the end you can save your final score and add to the list of high scores.
@@ -89,7 +98,7 @@ function stopTimer() {
 ```
 ## Credits
 
-### Authors
+### Author
 
 - Carlos Toledo: [portfolio](https://professional-portfolio2020.herokuapp.com/)
 - Github: [kqarlos](https://www.github.com/kqarlos)
