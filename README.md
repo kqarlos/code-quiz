@@ -1,13 +1,16 @@
-# Code Quiz
+# Code Quiz 📝
 
-![Languages](https://img.shields.io/github/languages/count/kqarlos/code-quiz)
-![Top Language](https://img.shields.io/github/languages/top/kqarlos/code-quiz)
-![Code Size](https://img.shields.io/github/languages/code-size/kqarlos/code-quiz)
-![Repo Size](https://img.shields.io/github/repo-size/kqarlos/code-quiz)
-![Total Lines](https://img.shields.io/tokei/lines/github/kqarlos/code-quiz)
-![Last Commit](https://img.shields.io/github/last-commit/kqarlos/code-quiz)
-[![HitCount](http://hits.dwyl.com/kqarlos/code-quiz.svg)](http://hits.dwyl.com/kqarlos/code-quiz)
-![Followers](https://img.shields.io/github/followers/kqarlos?style=social)
+</br>
+<p align="center">
+    <img src="https://img.shields.io/github/languages/count/kqarlos/code-quiz?style=for-the-badge" alt="Languages" />
+    <img src="https://img.shields.io/github/languages/top/kqarlos/code-quiz?style=for-the-badge" alt="Top Language" />
+    <img src="https://img.shields.io/github/languages/code-size/kqarlos/code-quiz?style=for-the-badge" alt="Code Size" />
+    <img src="https://img.shields.io/github/repo-size/kqarlos/code-quiz?style=for-the-badge" alt="Repo Size" />   
+    <img src="https://img.shields.io/tokei/lines/github/kqarlos/code-quiz?style=for-the-badge" alt="Total Lines" />   
+    <img src="https://img.shields.io/github/last-commit/kqarlos/code-quiz?style=for-the-badge" alt="Last Commit" />  
+    <img src="https://img.shields.io/github/issues/kqarlos/code-quiz?style=for-the-badge" alt="Issues" />  
+    <img src="https://img.shields.io/github/followers/kqarlos?style=social" alt="Followers" />  
+</p>
 
 ## Description
 
@@ -26,8 +29,9 @@ This application will test your knowledge of javascript, css and html! Answer th
 
 This application is compatible with the most commonly used web browsers.
 
-* [See Live Site](https://kqarlos.github.io/code-quiz)
-
+<p align="center">
+    <a href="https://kqarlos.github.io/code-quiz"><img src="https://img.shields.io/badge/-👉 See Live Site-success?style=for-the-badge"  alt="Live Site" /></a>
+</p>
 ## Usage
 
 ### Screenshots
@@ -58,13 +62,11 @@ This application is compatible with the most commonly used web browsers.
 ```javascript
 
 submitInitialsBtnEl.addEventListener("click", function () {
-    var initValue = initialsEl.value.trim();
+    let initValue = initialsEl.value.trim();
     if (initValue) {
-        var userScore = { username: initValue, userScore: score };
+        let userScore = { username: initValue, userScore: score };
         initialsEl.value = '';
-        if (localStorage.getItem("scores")) {
-            highScores = JSON.parse(localStorage.getItem("scores"));
-        }
+        highScores = JSON.parse(localStorage.getItem("scores")) || [];
         highScores.push(userScore)
         localStorage.setItem("scores", JSON.stringify(highScores));
         hide(inputScoreEl);
@@ -100,19 +102,23 @@ function stopTimer() {
 
 ### Author
 
-- Carlos Toledo: [portfolio](https://professional-portfolio2020.herokuapp.com/)
-- Github: [kqarlos](https://www.github.com/kqarlos)
+- 💼 Carlos Toledo: [portfolio](https://professional-portfolio2020.herokuapp.com/)
+- :octocat: Github: [kqarlos](https://www.github.com/kqarlos)
 - LinkedIn: [carlos-toledo415](https://www.linkedin.com/in/carlos-toledo415/)
 
 
 ### Built With
 
-* [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
-* [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
-* [Bootstrap](https://getbootstrap.com/)
-* [Javascript](https://www.javascript.com/)
-* [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model)
+<p align="center">
+    <a href="https://developer.mozilla.org/en-US/docs/Web/HTML"><img src="https://img.shields.io/badge/-HTML-orange?style=for-the-badge"  alt="HMTL" /></a>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS"><img src="https://img.shields.io/badge/-CSS-blue?style=for-the-badge" alt="CSS" /></a>
+    <a href="https://www.javascript.com/"><img src="https://img.shields.io/badge/-Javascript-yellow?style=for-the-badge" alt="Javascript" /></a>
+    <a href="https://getbootstrap.com/"><img src="https://img.shields.io/badge/-Bootstrap-blueviolet?style=for-the-badge" alt="Bootstrap" /></a>
+</p>
+</br>
 
 ## License
 
-![GitHub](https://img.shields.io/github/license/kqarlos/code-quiz)
+<p align="center">
+    <img align="center" src="https://img.shields.io/github/license/kqarlos/code-quiz?style=for-the-badge" alt="MIT license" />
+</p>
