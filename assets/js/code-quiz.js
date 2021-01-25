@@ -66,9 +66,7 @@ function nextQuestion() {
 
 //checks answer based on current question and updates the user score
 function checkAnswer(answer) {
-    let answerIndex = answer.id - 1;
-
-    if (questions[currentQ].answer == questions[currentQ].choices[answerIndex]) {
+    if (questions[currentQ].answer == questions[currentQ].choices[answer.id]) {
         score += 5;
         displayMessage("Correct!");
     }
@@ -80,21 +78,15 @@ function checkAnswer(answer) {
 
 //displays a message for 2 seconds
 function displayMessage(m) {
-    let timeStart = 0;
-    let timeStop = 2;
     let messageHr = document.createElement("hr");
     let messageEl = document.createElement("div");
     messageEl.textContent = m;
     document.querySelector(".jumbotron").appendChild(messageHr);
     document.querySelector(".jumbotron").appendChild(messageEl);
-    let messageInterval = setInterval(function () {
-        timeStart++;
-        if (timeStart >= timeStop) {
+    setTimeout(function () {
             messageHr.remove();
             messageEl.remove();
-            clearInterval(messageInterval)
-        }
-    }, 1000);
+    }, 2000);
 
 }
 
@@ -106,7 +98,6 @@ function hide(element) {
 //displays element
 function show(element) {
     element.style.display = "block";
-
 }
 
 //reset local variables
@@ -123,15 +114,14 @@ function reset() {
 function renderQuestion() {
     questionEl.textContent = questions[currentQ].title;
     for (i = 0; i < answersEl.children.length; i++) {
-        answersEl.children[i].children[0].textContent = (i + 1) + ": " + questions[currentQ].choices[i];
+        answersEl.children[i].children[0].textContent = `${(i + 1)}: ${questions[currentQ].choices[i]}`;
     }
 }
 
 //Renders high scores stored in local storage
 function renderHighScores() {
-    while (scoresEl.firstChild) {
-        scoresEl.removeChild(scoresEl.firstChild);
-    }
+    // Clear content
+    scoresEl.innerHTML = "";
     show(highScoresEl);
     highScores = JSON.parse(localStorage.getItem("scores"));
     for (let i = 0; i < highScores.length; i++) {
@@ -139,7 +129,7 @@ function renderHighScores() {
         scoreItem.className += "row mb-3 p-2";
         console.log(scoreItem)
         scoreItem.setAttribute("style", "background-color:PaleTurquoise;");
-        scoreItem.textContent = (i + 1) + ". " + highScores[i].username + " - " + highScores[i].userScore;
+        scoreItem.textContent = `${(i + 1)}. ${highScores[i].username} - ${highScores[i].userScore}`;
         scoresEl.appendChild(scoreItem);
     }
 }
@@ -180,9 +170,7 @@ submitInitialsBtnEl.addEventListener("click", function () {
     if (initValue) {
         let userScore = { username: initValue, userScore: score };
         initialsEl.value = '';
-        if (localStorage.getItem("scores")) {
-            highScores = JSON.parse(localStorage.getItem("scores"));
-        }
+        highScores = JSON.parse(localStorage.getItem("scores")) || [];
         highScores.push(userScore)
         localStorage.setItem("scores", JSON.stringify(highScores));
         hide(inputScoreEl);
