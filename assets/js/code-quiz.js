@@ -1,27 +1,27 @@
 // Welcome Page Elements =====================================
-var welcomeEl = document.querySelector("#welcome");
-var startQuizBtnEl = document.querySelector("#startQuiz");
+const welcomeEl = document.querySelector("#welcome");
+const startQuizBtnEl = document.querySelector("#startQuiz");
 
 //Quiz Page Elements =========================================
-var quizEl = document.querySelector("#quiz");
-var questionEl = document.querySelector("#question");
-var answersEl = document.querySelector("#answers");
+const quizEl = document.querySelector("#quiz");
+const questionEl = document.querySelector("#question");
+const answersEl = document.querySelector("#answers");
 
 //Input Score Page Elements ==================================
-var inputScoreEl = document.querySelector("#inputScore");
-var initialsEl = document.querySelector("#initials");
-var submitInitialsBtnEl = document.querySelector("#submitInitials");
-var userScoreEl = document.querySelector("#score");
+const inputScoreEl = document.querySelector("#inputScore");
+const initialsEl = document.querySelector("#initials");
+const submitInitialsBtnEl = document.querySelector("#submitInitials");
+const userScoreEl = document.querySelector("#score");
 
 //View High Scores Page Elements =============================
-var highScoresEl = document.querySelector("#highScores");
-var scoresEl = document.querySelector("#scores");
-var goBackBtnEl = document.querySelector("#goBack");
-var clearScoresBtnEl = document.querySelector("#clearScores");
+const highScoresEl = document.querySelector("#highScores");
+const scoresEl = document.querySelector("#scores");
+const goBackBtnEl = document.querySelector("#goBack");
+const clearScoresBtnEl = document.querySelector("#clearScores");
 
 //Universal vars =============================================
-var viewHScoresBtnEl = document.querySelector("#viewHScores");
-var timerEl = document.querySelector("#timer");
+const viewHScoresBtnEl = document.querySelector("#viewHScores");
+const timerEl = document.querySelector("#timer");
 var score = 0;
 var currentQ = 0;
 var highScores = [];
@@ -54,7 +54,6 @@ function nextQuestion() {
     if (currentQ < questions.length) {
         renderQuestion();
     } else {
-        // console.log("final score: " + score);
         stopTimer();
         if ((timeGiven - secondsElapsed) > 0)
             score += (timeGiven - secondsElapsed);
@@ -67,33 +66,28 @@ function nextQuestion() {
 
 //checks answer based on current question and updates the user score
 function checkAnswer(answer) {
-    // console.log("answer element: ");
-    // console.log(answer);
-    var answerIndex = answer.id - 1;
-    // console.log("answer index: " + answerIndex);
+    let answerIndex = answer.id - 1;
 
     if (questions[currentQ].answer == questions[currentQ].choices[answerIndex]) {
         score += 5;
-        // console.log("correct, score: " + score);
         displayMessage("Correct!");
     }
     else {
         secondsElapsed += 10;
         displayMessage("Wrong...");
-        // console.log("incorrect, score:" + score);
     }
 }
 
 //displays a message for 2 seconds
 function displayMessage(m) {
-    var timeStart = 0;
-    var timeStop = 2;
-    var messageHr = document.createElement("hr");
-    var messageEl = document.createElement("div");
+    let timeStart = 0;
+    let timeStop = 2;
+    let messageHr = document.createElement("hr");
+    let messageEl = document.createElement("div");
     messageEl.textContent = m;
     document.querySelector(".jumbotron").appendChild(messageHr);
     document.querySelector(".jumbotron").appendChild(messageEl);
-    var messageInterval = setInterval(function () {
+    let messageInterval = setInterval(function () {
         timeStart++;
         if (timeStart >= timeStop) {
             messageHr.remove();
@@ -128,7 +122,6 @@ function reset() {
 //Renders current question
 function renderQuestion() {
     questionEl.textContent = questions[currentQ].title;
-    // console.log(answersEl);
     for (i = 0; i < answersEl.children.length; i++) {
         answersEl.children[i].children[0].textContent = (i + 1) + ": " + questions[currentQ].choices[i];
     }
@@ -141,8 +134,8 @@ function renderHighScores() {
     }
     show(highScoresEl);
     highScores = JSON.parse(localStorage.getItem("scores"));
-    for (var i = 0; i < highScores.length; i++) {
-        var scoreItem = document.createElement("div");
+    for (let i = 0; i < highScores.length; i++) {
+        let scoreItem = document.createElement("div");
         scoreItem.className += "row mb-3 p-2";
         console.log(scoreItem)
         scoreItem.setAttribute("style", "background-color:PaleTurquoise;");
@@ -174,7 +167,6 @@ startQuizBtnEl.addEventListener("click", function () {
 
 //Calls to check answer selected and calls to next question if button is clicked
 answersEl.addEventListener("click", function (e) {
-    // console.log(e.target);
     if (e.target.matches("button")) {
         checkAnswer(e.target);
         nextQuestion();
@@ -184,9 +176,9 @@ answersEl.addEventListener("click", function (e) {
 //Creates a user score object to push to the local storage scores array calls to display high scores
 //calls to render high scores
 submitInitialsBtnEl.addEventListener("click", function () {
-    var initValue = initialsEl.value.trim();
+    let initValue = initialsEl.value.trim();
     if (initValue) {
-        var userScore = { username: initValue, userScore: score };
+        let userScore = { username: initValue, userScore: score };
         initialsEl.value = '';
         if (localStorage.getItem("scores")) {
             highScores = JSON.parse(localStorage.getItem("scores"));
